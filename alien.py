@@ -3,6 +3,7 @@ import game_functions as gf
 from settings import Settings
 from ship import Ship
 
+
 def run_game():
     # Initialize the game and create a screen object
     pygame.init()

@@ -1,6 +1,7 @@
 import sys
 import pygame
 
+
 def check_events(ship):
     # This function listens for and responds to keypresses and mouse clicks
     for event in pygame.event.get():
