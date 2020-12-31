@@ -17,3 +17,4 @@ class Settings:
         self.laser_width = 3
         self.laser_height = 15
         self.laser_color = (255, 0, 0)
+        self.lasers_allowed = 3
