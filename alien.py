@@ -1,7 +1,9 @@
 import pygame
+from pygame.sprite import Group
 import game_functions as gf
 from settings import Settings
 from ship import Ship
+
 
 
 def run_game():
@@ -14,12 +16,16 @@ def run_game():
     # Make a ship
     ship = Ship(ai_settings, screen)
 
+    # Make a group to store lasers in
+    lasers = Group()
+
     # This is the main loop that runs the game.
     while True:
         # Watch for keyboard and mouse events and process accordingly
-        gf.check_events(ship)
+        gf.check_events(ai_settings, screen, ship, lasers)
         ship.update()
-        gf.update_screen(ai_settings, screen, ship)
+        lasers.update()
+        gf.update_screen(ai_settings, screen, ship, lasers)
 
 
 run_game()
