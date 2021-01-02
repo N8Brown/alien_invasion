@@ -1,24 +1,26 @@
 import pygame
-import game_functions as gf
-from settings import Settings
-from ship import Ship
-
-def run_game():
-    # Initialize the game and create a screen object
-    pygame.init()
-    ai_settings = Settings()  # Instantiates from the settings module where all game settings are stored
-    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
-    pygame.display.set_caption("Alien Invasion")
-
-    # Make a ship
-    ship = Ship(ai_settings, screen)
-
-    # This is the main loop that runs the game.
-    while True:
-        # Watch for keyboard and mouse events and process accordingly
-        gf.check_events(ship)
-        ship.update()
-        gf.update_screen(ai_settings, screen, ship)
+from pygame.sprite import Sprite
 
 
-run_game()
+class Alien(Sprite):
+    # This class represents a single alien in the fleet
+    def __init__(self, ai_settings, screen):
+        # Initialize the alien and set it's starting position on the screen
+        super(Alien, self).__init__()
+        self.screen = screen
+        self.ai_settings = ai_settings
+
+        # Load the alien image and set its rect attribute
+        self.image = pygame.image.load("./images/alien.bmp")
+        self.rect = self.image.get_rect()
+
+        # Start each new alien near the top left of the screen
+        self.rect.x = self.rect.width
+        self.rect.y = self.rect.height
+
+        # Store the alien's exact position
+        self.x = float(self.rect.x)
+
+    def blitme(self):
+        # Draw the alien at its current location
+        self.screen.blit(self.image, self.rect)
