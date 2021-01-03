@@ -22,13 +22,19 @@ def run_game():
     # Make a group to store lasers in
     lasers = Group()
 
+    # Make a group to store the alien fleet in
+    aliens = Group()
+
+    # Create the fleet of aliens
+    gf.create_fleet(ai_settings, screen, aliens)
+
     # This is the main loop that runs the game.
     while True:
         # Watch for keyboard and mouse events and process accordingly
         gf.check_events(ai_settings, screen, ship, lasers)
         ship.update()
         gf.update_lasers(lasers)
-        gf.update_screen(ai_settings, screen, ship, alien, lasers)
+        gf.update_screen(ai_settings, screen, ship, aliens, lasers)
 
 
 run_game()
