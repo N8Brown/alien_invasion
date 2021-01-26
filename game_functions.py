@@ -82,6 +82,21 @@ def check_keyup_events(event, ship):
         ship.moving_left = False
 
 
+def check_fleet_edges(ai_settings, aliens):
+    # Respond appropriately if any aliens have reached an edge
+    for alien in aliens.sprites():
+        if alien.check_edges():
+            change_fleet_direction(ai_settings, aliens)
+            break
+
+
+def change_fleet_direction(ai_settings, aliens):
+    # Drop the entire fleet and change the fleet's direction
+    for alien in aliens.sprites():
+        alien.rect.y += ai_settings.fleet_drop_speed
+    ai_settings.fleet_direction *= -1
+
+
 def update_screen(ai_settings, screen, ship, aliens, lasers):
     # This function updates images on the screen and flips to the new screen
     screen.fill(ai_settings.bg_color)
@@ -104,3 +119,9 @@ def update_lasers(lasers):
     for laser in lasers.copy():
         if laser.rect.bottom <= 0:
             lasers.remove(laser)
+
+
+def update_aliens(ai_settings, aliens):
+    # Check if the fleet is at an edge and then update the positions of all aliens in the fleet
+    check_fleet_edges(ai_settings, aliens)
+    aliens.update()

@@ -6,7 +6,7 @@ class Settings:
 
         # Screen settings
         self.screen_width = 1200
-        self.screen_height = 680
+        self.screen_height = 800
         self.bg_color = (230, 230, 230)
 
         # Ship settings
@@ -18,3 +18,10 @@ class Settings:
         self.laser_height = 15
         self.laser_color = (255, 0, 0)
         self.lasers_allowed = 3
+
+        #Alien settings
+        self.alien_speed_factor = 1
+        self.fleet_drop_speed = 10
+        # fleet_direction of 1 means right, -1 means left
+        self.fleet_direction = 1
+        
